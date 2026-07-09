@@ -60,7 +60,12 @@ export async function migrate(env) {
   const row = await env.DB.prepare('SELECT meta_value FROM schema_meta WHERE meta_key = ?').bind('schema_version').first();
   const cur = row ? Number(row.meta_value) || 0 : 0;
   for (let i = cur; i < MIGRATIONS.length; i++) {
-    try { await env.DB.exec(MIGRATIONS[i]); } catch (e) { /* already applied */ }
+    try {
+      const sql = MIGRATIONS[i].replace(/\s+/g, ' ');
+      await env.DB.exec(sql);
+    } catch (e) {
+      console.error(`Migration v${i + 1} failed:`, e);
+    }
   }
   if (MIGRATIONS.length > cur) {
     await env.DB.prepare(

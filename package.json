@@ -1,0 +1,11 @@
+{
+  "name": "nexrall-new-project",
+  "version": "1.0.0",
+  "description": "NetViet KOC — Marketplace & Hợp đồng điện tử",
+  "scripts": {
+    "dev": "wrangler pages dev --port 8788"
+  },
+  "devDependencies": {
+    "wrangler": "^3.0.0"
+  }
+}
