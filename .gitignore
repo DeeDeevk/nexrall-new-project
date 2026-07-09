@@ -1,4 +1,13 @@
-.wrangler/
 node_modules/
 .DS_Store
 *.log
+
+# Ignore Wrangler temporary build files and workerd caches
+.wrangler/*
+!.wrangler/state/
+.wrangler/state/*
+!.wrangler/state/v3/
+.wrangler/state/v3/*
+!.wrangler/state/v3/d1/
+.wrangler/state/v3/d1/**/*.sqlite-shm
+.wrangler/state/v3/d1/**/*.sqlite-wal
